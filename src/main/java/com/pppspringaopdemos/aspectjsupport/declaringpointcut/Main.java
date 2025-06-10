@@ -23,6 +23,9 @@ public class Main {
         specialService.specialOperation("Upgrade");
         specialService.anotherSpecialOperation("Parameter");
         
+        Class clazz = specialService.getClass();
+        clazz.getAnnotation(clazz);
+        
         MyService service = (MyService) context.getBean("myServiceBean");
         service.serve();
     }
