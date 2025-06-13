@@ -25,6 +25,7 @@ public class SampleAspect {
 	// com.intheeast.aspectj.declaringadvice.service.Sample+:
 	// 이 표현식은 Sample 인터페이스와 그 하위 타입(즉, Sample을 구현한 모든 클래스)을 의미합니다.
 	// &&의 역할: AspectJ에서 &&는 두 개의 포인트컷 표현식을 결합하는 데 사용
+	// args(param) : 파라미터 타입을 제한하겠다. 현재는 MyType의 param
 	// *: 메서드의 파라미터가 하나만 있는 경우를 나타냅니다. 이 표현식은 단일 파라미터를 가지는 메서드에만 일치합니다.
     @Before("execution(* com.pppspringaopdemos.aspectjsupport.declaringadvice.service.Sample+.sampleGenericMethod(*)) && args(param)")
     public void beforeSampleMethod(JoinPoint joinPoint, MyType param) {
@@ -42,7 +43,7 @@ public class SampleAspect {
         
         // 수동으로 Collection 내부 요소의 타입 확인
         if (!param.isEmpty()) {
-            Object firstElement = param.iterator().next();
+            Object firstElement = param.iterator().next(); // 첫 엘리먼트를 호출하는 메서드
             if (firstElement instanceof MyType) {
                 System.out.println("First element in collection is of type MyType: " + firstElement);
             }
@@ -72,6 +73,7 @@ public class SampleAspect {
         System.out.println("Before sampleGenericMethod with MyType param: " + param);
     }
     
+
     // Explicit Argument Names
     @Before(
             value = "execution(* com.pppspringaopdemos.aspectjsupport.declaringadvice.service.SampleService.*(..)) && target(bean) && @annotation(auditable)",
@@ -86,6 +88,7 @@ public class SampleAspect {
     @Before(
             value = "execution(* com.pppspringaopdemos.aspectjsupport.declaringadvice.service.SampleService.*(..)) && target(bean) && @annotation(auditablecode)",
             argNames = "jp,bean,auditablecode")
+    		// argNames가 나타내는게 advice 메서드들의 값을 나타낸다
     public void audit(JoinPoint jp, Object bean, AuditableCode auditablecode) {
         AuditCode code = auditablecode.value();
         System.out.println("Audit - Method: " + jp.getSignature().getName() + ", Bean: " + bean.getClass().getName() + ", Code: " + code);

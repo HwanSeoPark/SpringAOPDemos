@@ -127,14 +127,17 @@ public class Main {
         List<MyType> myTypeList = Arrays.asList(new MyType("Test1"), new MyType("Test2"));
         sampleService.sampleGenericCollectionMethod(myTypeList);
         
-        
-        sampleService.sampleGenericMethod(new MyType("Example"));
+        sampleService.sampleGenericMethod(new MyType("Test"), 10, "John");
+        sampleService.sampleGenericMethod(new MyType("Example"));      
         sampleService.sampleGenericCollectionMethod(myTypeList);
 
         sampleService.sampleMethod("Test data");
         
         accountService = context.getBean(AccountService.class);
         accountService.findAccounts("doe");
+        
+        MyService myService = context.getBean(MyService.class);
+        myService.performTask();
 
     }
 }

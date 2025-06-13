@@ -125,6 +125,12 @@
 				  <source>${maven.compiler.source}</source>
                   <target>${maven.compiler.target}</target>
                   <release>17</release>
+			  
+			     <!-- 수업을 위해 쓴 기능/ 파라미터 이름 추가 기능-->
+			  	  <compilerArgs>
+          			 <arg>-parameters</arg>
+        		  </compilerArgs>
+			  
 			  </configuration>
 		  </plugin>
 	  </plugins>

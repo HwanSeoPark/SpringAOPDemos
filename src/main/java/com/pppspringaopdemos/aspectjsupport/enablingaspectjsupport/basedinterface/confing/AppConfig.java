@@ -7,6 +7,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import com.pppspringaopdemos.aspectjsupport.enablingaspectjsupport.basedinterface.aspect.MyAspect;
 import com.pppspringaopdemos.aspectjsupport.enablingaspectjsupport.basedinterface.service.FooService;
 import com.pppspringaopdemos.aspectjsupport.enablingaspectjsupport.basedinterface.service.FooServiceImpl;
+import com.pppspringaopdemos.aspectjsupport.enablingaspectjsupport.basedinterface.service.HelloService;
 
 @Configuration
 ///////////////////////////////////////////////////////////////
@@ -34,6 +35,13 @@ public class AppConfig {
     }
 	// 여기도 보면 fooService()를 빈으로 등록하는걸 볼수있음
 
+	@Bean
+	public HelloService helloService() {
+		// fppServoce() 호출하면 어떻게 되나요?
+		// : 바로 호출 안됨!! 스프링 IoC 컨테이너에 있는 fooService()의 빈을 전달해줌
+		return new HelloService(fooService()); // 
+	}
+	
     @Bean
     public MyAspect myAspect() {
         return new MyAspect();

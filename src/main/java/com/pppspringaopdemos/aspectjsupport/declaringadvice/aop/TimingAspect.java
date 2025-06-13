@@ -14,7 +14,7 @@ public class TimingAspect {
         long startTime = System.currentTimeMillis();
         System.out.println("Timer started for method: " + pjp.getSignature());
 
-        // 메서드를 실제로 실행
+        // 타겟 클래스 메서드를 실제로 실행
         Object result = pjp.proceed();
 
         long endTime = System.currentTimeMillis();

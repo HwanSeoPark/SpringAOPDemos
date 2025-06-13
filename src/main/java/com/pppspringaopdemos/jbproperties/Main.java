@@ -63,10 +63,13 @@ public class Main {
             advised.addAdvice(new MethodBeforeAdvice() {
                 @Override
                 public void before(Method method, Object[] args, Object target) throws Throwable {
-                    System.out.println("동적으로 추가된 어드바이스");
+                	 System.out.println("Before2 method: " + method.getName());
                 }
             });
             System.out.println("Frozen 설정이 무시되었습니다. 어드바이스가 추가되었습니다.");
+        
+            proxy.doSomething();
+            
         } catch (UnsupportedOperationException e) {
             System.out.println("Frozen 설정으로 인해 어드바이스 추가가 차단되었습니다: " + e.getMessage());
         }

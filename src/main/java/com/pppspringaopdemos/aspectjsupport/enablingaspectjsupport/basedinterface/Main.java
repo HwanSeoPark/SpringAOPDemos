@@ -28,6 +28,27 @@ public class Main {
 		
 		fooService.helloFoo();
 		
+		for (String beanName : context.getBeanDefinitionNames()) {
+			Object bean = context.getBean(beanName);
+			Class<?> beanClass = bean.getClass();
+			
+			//Check whether the given object is a JDK dynamic proxy or a CGLIB proxy
+			boolean isAopProxy = AopUtils.isAopProxy(bean);
+			boolean isCglib = AopUtils.isCglibProxy(bean);
+			boolean isJdk = AopUtils.isJdkDynamicProxy(bean);
+			
+			System.out.printf("+++++++++++++++++++++++++++++++++++++\n");
+			System.out.printf("빈 이름: %-20s \n"
+					+ " cglib : %-5s \n"
+					+ " dynamic : %-5s \n"
+					+ " 타입: %s%n ",
+					beanName,
+					isCglib ? "예" : "아니오",
+					isJdk ? "예" : "아니오",
+					beanClass.getName());
+			System.out.printf("-------------------------------------\n");
+		}
+		
 	}
 
 }

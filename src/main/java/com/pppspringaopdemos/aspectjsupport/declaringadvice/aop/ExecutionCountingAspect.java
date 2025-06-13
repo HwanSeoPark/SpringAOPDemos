@@ -14,7 +14,7 @@ public class ExecutionCountingAspect {
     // thread-safed 카운터를 위한 AtomicInteger
     private AtomicInteger executionCount = new AtomicInteger(0);
 
-    @Around("execution(* com.pppspringaopdemos.aspectjsupport.declaringadvice.service.MyService.*(..))")
+    @Around("execution(* com.pppspringaopdemos.aspectjsupport.declaringadvice.service.SampleService.*(..))")
     public Object countExecutions(ProceedingJoinPoint pjp) throws Throwable {
         // 메서드 실행 전 카운터 증가
         int currentCount = executionCount.incrementAndGet();
