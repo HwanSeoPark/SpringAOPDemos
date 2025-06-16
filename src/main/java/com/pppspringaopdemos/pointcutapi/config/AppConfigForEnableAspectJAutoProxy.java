@@ -11,6 +11,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import com.pppspringaopdemos.pointcutapi.advice.ExceptionHandlingAdvice;
 import com.pppspringaopdemos.pointcutapi.advice.ExecutionTimeAdvice;
 import com.pppspringaopdemos.pointcutapi.advice.LoggingAdvice;
+import com.pppspringaopdemos.pointcutapi.pointcut.CustomPointcut;
 import com.pppspringaopdemos.pointcutapi.service.AnotherService;
 import com.pppspringaopdemos.pointcutapi.service.MyService;
 

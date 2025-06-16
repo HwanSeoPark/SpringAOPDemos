@@ -56,8 +56,10 @@ public class SpringAOPExample {
 
 	
 	public static void main(String[] args) {
-//		execAppConfig();
+	// 둘중 하나만 써야함
+	// config는 한개만 사용함
+		execAppConfig();
 		
-		execAppConfigForEnableAspectJAutoProxy();
+//		execAppConfigForEnableAspectJAutoProxy();
     }
 }

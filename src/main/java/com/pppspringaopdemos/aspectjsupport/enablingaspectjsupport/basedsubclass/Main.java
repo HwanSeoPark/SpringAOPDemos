@@ -15,6 +15,9 @@ public class Main {
         		new AnnotationConfigApplicationContext(AppConfig.class);
 
 		FooService fooService = context.getBean(FooService.class);
+		// 프록시 클래스를 만들면 빈으로 등록되어 있던 FooService를 
+		// 프록시 클래스로 바꿔치기함
+		
 		
 		System.out.println(AopUtils.isCglibProxy(fooService)); // → true
 		System.out.println(AopUtils.isJdkDynamicProxy(fooService)); // → false
