@@ -33,7 +33,7 @@ public class Main {
         // performOperation 메서드 호출 (첫 번째 어드바이스 적용 확인)
         myServiceProxy.performOperation();
 
-        // 두 번째 어드바이저를 가져와 첫 번째 어드바이저와 교체
+        // 두 번째 어드바이저를 가져와 첫 번째 어드바이저와 순서 교체(어드바이스 체인 순서 변경)
         DefaultPointcutAdvisor anotherAdvisor = context.getBean("anotherAdvisor", DefaultPointcutAdvisor.class);
         advised.replaceAdvisor(myAdvisor, anotherAdvisor);
 

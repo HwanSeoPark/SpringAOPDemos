@@ -9,6 +9,8 @@ public class BusinessObject2 implements BusinessService{
 	@Transactional
 	public void process() {
         System.out.println("Processing in BusinessObject2");
+        
+        throw new RuntimeException("강제 예외 발생!");
     }
 	
 }

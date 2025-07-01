@@ -22,7 +22,7 @@ import java.util.Collection;
 public class SampleAspect {
 
     // 특정 타입의 파라미터를 가진 메서드에 어드바이스 적용
-	// com.intheeast.aspectj.declaringadvice.service.Sample+:
+	// com.pppspringaopdemos.aspectj.declaringadvice.service.Sample+:
 	// 이 표현식은 Sample 인터페이스와 그 하위 타입(즉, Sample을 구현한 모든 클래스)을 의미합니다.
 	// &&의 역할: AspectJ에서 &&는 두 개의 포인트컷 표현식을 결합하는 데 사용
 	// args(param) : 파라미터 타입을 제한하겠다. 현재는 MyType의 param
@@ -33,7 +33,7 @@ public class SampleAspect {
     }
 
     // 제네릭 컬렉션 타입의 파라미터를 가진 메서드에 어드바이스 적용
-    // com.intheeast.aspectj.declaringadvice.service.Sample+:
+    // com.pppspringaopdemos.aspectj.declaringadvice.service.Sample+:
  	// 이 표현식은 Sample 인터페이스와 그 하위 타입(즉, Sample을 구현한 모든 클래스)을 의미합니다.
 	// &&의 역할: AspectJ에서 &&는 두 개의 포인트컷 표현식을 결합하는 데 사용
     // *: 메서드의 파라미터가 하나만 있는 경우를 나타냅니다. 이 표현식은 단일 파라미터를 가지는 메서드에만 일치합니다.

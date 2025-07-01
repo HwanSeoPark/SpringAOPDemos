@@ -12,6 +12,7 @@ import com.pppspringaopdemos.pointcutapi.advice.ExceptionHandlingAdvice;
 import com.pppspringaopdemos.pointcutapi.advice.ExecutionTimeAdvice;
 import com.pppspringaopdemos.pointcutapi.advice.LoggingAdvice;
 import com.pppspringaopdemos.pointcutapi.pointcut.CustomPointcut;
+import com.pppspringaopdemos.pointcutapi.pointcut.MyPointcutAdvisor;
 import com.pppspringaopdemos.pointcutapi.service.AnotherService;
 import com.pppspringaopdemos.pointcutapi.service.MyService;
 
@@ -30,6 +31,7 @@ public class AppConfigForEnableAspectJAutoProxy {
         pointcut.setExpression("execution(* com.pppspringaopdemos.pointcutapi.service.MyService.myMethod(..))");
         return pointcut;
     }
+        
 
     @Bean
     public DefaultPointcutAdvisor loggingAdvisor(@Qualifier("customPointcut") Pointcut pointcut) {
@@ -49,6 +51,11 @@ public class AppConfigForEnableAspectJAutoProxy {
     @Bean
     public DefaultPointcutAdvisor aspectJLoggingAdvisor(@Qualifier("aspectJPointcut") Pointcut pointcut) {
         return new DefaultPointcutAdvisor(pointcut, new LoggingAdvice());
+    }
+    
+    @Bean
+    public MyPointcutAdvisor retryAdvisor() {
+        return new MyPointcutAdvisor();
     }
 
     @Bean

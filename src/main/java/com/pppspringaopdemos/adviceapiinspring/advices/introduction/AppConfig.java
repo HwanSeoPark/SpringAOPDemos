@@ -14,7 +14,7 @@ public class AppConfig {
 
     @Bean
     public MyTargetClass myTargetClass(LockMixinAdvisor lockMixinAdvisor) {
-        ProxyFactory factory = new ProxyFactory(new MyTargetClass());
+        ProxyFactory factory = new ProxyFactory(new MyTargetClass()); // 타겟클래스 전달
         factory.addAdvisor(lockMixinAdvisor);
         factory.setProxyTargetClass(true); // CGLIB proxy를 강제 사용
         return (MyTargetClass) factory.getProxy();

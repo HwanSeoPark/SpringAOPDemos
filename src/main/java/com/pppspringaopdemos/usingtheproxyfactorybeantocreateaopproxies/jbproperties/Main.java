@@ -57,7 +57,8 @@ public class Main {
         System.out.println("=== 6. Frozen 설정 테스트 ===");
         try {
             // 동적으로 어드바이스 추가 시도 (실패해야 함)
-            ProxyFactoryBean proxyFactoryBean = (ProxyFactoryBean) context.getBean("&proxyFactoryBean");
+            ProxyFactoryBean proxyFactoryBean = 
+            		(ProxyFactoryBean) context.getBean("&proxyFactoryBean");
             Advised advised = (Advised) proxyFactoryBean.getObject();
 
             advised.addAdvice(new MethodBeforeAdvice() {

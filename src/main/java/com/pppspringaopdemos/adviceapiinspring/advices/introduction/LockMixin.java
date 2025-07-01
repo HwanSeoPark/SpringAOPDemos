@@ -6,6 +6,10 @@ import org.aopalliance.intercept.MethodInvocation;
 @SuppressWarnings("serial")
 public class LockMixin extends DelegatingIntroductionInterceptor implements Lockable {
 
+	// 현재 DelegatingIntroductionInterceptor 필드인 delegate는 LockMixin	
+	// 여기서 delegate란?
+	// LockMixin : Object that actually implements the interfaces.[ex) 여기서는 Lockable]
+	// LockMixin : May be "this" if a subclass[LockMixin] implements the introduced interfaces.
     private boolean locked;
 
     @Override

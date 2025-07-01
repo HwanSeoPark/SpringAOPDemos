@@ -11,14 +11,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.interceptor.TransactionAttributeSourceAdvisor;
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 
-import com.pppspringaopdemos.conciseproxydefinitions.transaction.SimpleTransactionManager;
+import com.pppspringaopdemos.usingtheautoproxyfacility.transaction.SimpleTransactionManager;
 import com.pppspringaopdemos.usingtheautoproxyfacility.bean.BusinessObject1;
 import com.pppspringaopdemos.usingtheautoproxyfacility.bean.BusinessObject2;
 import com.pppspringaopdemos.usingtheautoproxyfacility.bean.MyBean;
 
 @Configuration
 @EnableTransactionManagement
-// 만약 BusinessObject1/2가 특정 인터페이스를 구현하지 않는다면, proxyTargetClass 속성을 true로 설정해야 합니다
+//만약 BusinessObject1/2가 특정 인터페이스를 구현하지 않는다면, 
+//proxyTargetClass 속성을 true로 설정해야 합니다
 //@EnableTransactionManagement(proxyTargetClass = true)
 public class AppConfig {
 
@@ -33,6 +34,7 @@ public class AppConfig {
     }
 
     // SimpleTraceInterceptor 정의
+    // SimpleTraceInterceptor 스프링 프레임워크가 지원하는 어드바이스
     @Bean
     public SimpleTraceInterceptor myInterceptor() {
         return new SimpleTraceInterceptor();
@@ -57,6 +59,7 @@ public class AppConfig {
     }
 
     // Transaction attribute source advisor 정의
+    // : @Transactional을 인식하는 포인트컷 + Advice(Interceptor) 연결
     @Bean
     public TransactionAttributeSourceAdvisor transactionAttributeSourceAdvisor(TransactionInterceptor transactionInterceptor) {
         TransactionAttributeSourceAdvisor advisor = new TransactionAttributeSourceAdvisor();
@@ -64,15 +67,20 @@ public class AppConfig {
         return advisor;
     }
 
-    // Transaction interceptor 정의
-    @Bean
-    public TransactionInterceptor transactionInterceptor() {
-        TransactionInterceptor interceptor = new TransactionInterceptor();
-        interceptor.setTransactionManager(transactionManager());
-        interceptor.setTransactionAttributeSource(
-        		new AnnotationTransactionAttributeSource());
-        return interceptor;
-    }
+    // Spring AOP 기반의 선언적 트랜잭션 처리를 위해 핵심적으로 동작하는 
+    // 트랜잭션 Advice(Interceptor)를 설정하는 부분
+    // @Transactional이 붙은 메서드가 호출될 때 이 인터셉터가 가로채어 다음을 수행합니다:
+    // - 트랜잭션 시작
+    // - 타겟 클래스 메서드 실행
+    // - 타겟 클래스 메서드 실행 결과, 예외 유무에 따라 커밋 또는 롤백
+//    @Bean
+//    public TransactionInterceptor transactionInterceptor() {
+//        TransactionInterceptor interceptor = new TransactionInterceptor();
+//        interceptor.setTransactionManager(transactionManager());
+//        interceptor.setTransactionAttributeSource(
+//        		new AnnotationTransactionAttributeSource());
+//        return interceptor;
+//    }
 
     // Transaction manager 정의
     @Bean

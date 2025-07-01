@@ -7,9 +7,9 @@ public class LoggingAdvice implements MethodInterceptor {
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        System.out.println("Before method: " + invocation.getMethod().getName());
+        System.out.println("[LoggingAdvice] : Before method: " + invocation.getMethod().getName());
         Object result = invocation.proceed();
-        System.out.println("After method: " + invocation.getMethod().getName());
+        System.out.println("[LoggingAdviceAfter] : After method: " + invocation.getMethod().getName());
         return result;
     }
 }
